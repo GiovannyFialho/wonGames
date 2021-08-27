@@ -1,6 +1,11 @@
 # Won Games 🎮
 > Projeto de e-commerce de games | Curso React Avançado
 
+Antes de começar, rode o comando:
+``sh
+yarn
+```
+
 ## API
 O banco de dados que a API consome, está em docker, para levantar o banco, é preciso rodar o comando:
 ```sh
