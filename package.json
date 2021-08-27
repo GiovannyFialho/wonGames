@@ -1,0 +1,24 @@
+{
+    "name": "wonGames",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:GiovannyFialho/wonGames.git",
+    "author": "GiovannyFialho <giovannyf@outlook.com>",
+    "license": "MIT",
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "client/src/**/*": [
+            "yarn lint --fix",
+            "yarn typecheck",
+            "yarn test --findRelatedTests --bail"
+        ]
+    },
+    "dependencies": {
+        "husky": "^7.0.2",
+        "lint-staged": "^11.1.2"
+    }
+}
