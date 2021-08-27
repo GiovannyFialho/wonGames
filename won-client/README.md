@@ -9,6 +9,7 @@ yarn
 ```shell
 yarn dev
 ```
+O projeto vai estar disponível na rota: `http://localhost:3000/`
 
 ## Husky
 Para o husky funcionar é preciso iniciar ele no projeto
