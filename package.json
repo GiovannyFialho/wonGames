@@ -5,6 +5,11 @@
     "repository": "git@github.com:GiovannyFialho/wonGames.git",
     "author": "GiovannyFialho <giovannyf@outlook.com>",
     "license": "MIT",
+    "scripts": {
+        "lint": "./client eslint src --max-warnings=0",
+        "typecheck": "./client tsc --project tsconfig.json --noEmit",
+        "test": "./client jest"
+    },
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged"
