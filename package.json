@@ -14,9 +14,9 @@
     },
     "lint-staged": {
         "client/src/**/*": [
-            "cd client && yarn lint --fix",
-            "cd client && yarn typecheck",
-            "cd client && yarn test --findRelatedTests --bail"
+            "cd client && yarn eslint src --max-warnings=0 --fix",
+            "cd client && yarn tsc --project tsconfig.json --noEmit",
+            "cd client && yarn jest --findRelatedTests --bail"
         ]
     },
     "repository": "git@github.com:GiovannyFialho/wonGames.git",
