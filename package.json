@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
+        "prepare": "husky install",
         "lint": "cd client && yarn eslint src --max-warnings=0",
         "typecheck": "cd client && yarn tsc --project tsconfig.json --noEmit",
         "test": "cd client && yarn jest"

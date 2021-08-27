@@ -9,8 +9,7 @@
         "test:watch": "yarn test --watch",
         "storybook": "start-storybook -s ./public -p 6006",
         "build-storybook": "build-storybook -s ./public",
-        "generate": "yarn plop --plopfile ./generators/plopfile.js",
-        "prepare": "husky install"
+        "generate": "yarn plop --plopfile ./generators/plopfile.js"
     },
     "dependencies": {
         "@apollo/client": "^3.4.9",
