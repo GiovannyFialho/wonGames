@@ -2,7 +2,7 @@
 > Projeto de e-commerce de games | Curso React Avançado
 
 Antes de começar, rode o comando:
-``sh
+```sh
 yarn
 ```
 
