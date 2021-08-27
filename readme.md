@@ -10,7 +10,7 @@ yarn
 
 ### Inicializando o Husky
 ```sh
-yarn prepare
+yarn husky install
 yarn husky init
 ```
 
