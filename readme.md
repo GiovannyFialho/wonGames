@@ -1,9 +1,17 @@
 # Won Games 🎮
 > Projeto de e-commerce de games | Curso React Avançado
 
-Antes de começar, rode o comando:
+## Configurando repositório
+
+### Instalando dependências
 ```sh
 yarn
+```
+
+### Inicializando o Husky
+```sh
+yarn husky install
+yarn husky init
 ```
 
 ## API
