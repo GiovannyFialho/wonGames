@@ -6,9 +6,9 @@
     "author": "GiovannyFialho <giovannyf@outlook.com>",
     "license": "MIT",
     "scripts": {
-        "lint": "./client eslint src --max-warnings=0",
-        "typecheck": "./client tsc --project tsconfig.json --noEmit",
-        "test": "./client jest"
+        "lint": "eslint src --max-warnings=0",
+        "typecheck": "tsc --project tsconfig.json --noEmit",
+        "test": "jest"
     },
     "husky": {
         "hooks": {
