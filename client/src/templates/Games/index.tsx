@@ -4,7 +4,7 @@ import Gamecard, { GamecardProps } from "components/Gamecard";
 import { Grid } from "components/Grid";
 
 import { Main, ShowMore } from "./styles";
-import { ArrowDown } from "styled-icons/bootstrap";
+import { KeyboardArrowDown as ArrowDown } from "@styled-icons/material-outlined/KeyboardArrowDown";
 
 export type GamesTemplateProps = {
     games?: GamecardProps[];
