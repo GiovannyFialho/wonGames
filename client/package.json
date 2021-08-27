@@ -1,14 +1,11 @@
 {
-    "name": "won-games",
+    "name": "client",
     "version": "0.1.0",
     "private": true,
     "scripts": {
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
-        "lint": "eslint src --max-warnings=0",
-        "typecheck": "tsc --project tsconfig.json --noEmit",
-        "test": "jest",
         "test:watch": "yarn test --watch",
         "storybook": "start-storybook -s ./public -p 6006",
         "build-storybook": "build-storybook -s ./public",
