@@ -6,7 +6,7 @@ O banco de dados que a API consome, está em docker, para levantar o banco, é p
 ```sh
 docker-compose up -d
 ```
-Assim que o docker terminar de subir o banco, é preciso entrar no diretório da [API](https://github.com/GiovannyFialho/wonGames/tree/master/won-api) e continuar o processo descrito no readme.
+Assim que o docker terminar de subir o banco, é preciso entrar no diretório da [API](https://github.com/GiovannyFialho/wonGames/tree/master/api) e continuar o processo descrito no readme.
 
 ## Client
-Basta entrar no diretório do [Client](https://github.com/GiovannyFialho/wonGames/tree/master/won-client) e seguir o processo descrito no readme.
+Basta entrar no diretório do [Client](https://github.com/GiovannyFialho/wonGames/tree/master/client) e seguir o processo descrito no readme.
