@@ -3,6 +3,8 @@ import {
     FavoriteBorder
 } from "@styled-icons/material-outlined";
 
+import formatPrice from "utils/formatPrice";
+
 import Heading from "components/Heading";
 import Ribbon from "components/Ribbon";
 import Button from "components/Button";
@@ -21,12 +23,7 @@ const GameInfo = ({ title, description, price }: GameInfoProps) => (
             {title}
         </Heading>
 
-        <Ribbon color="secondary">
-            {new Intl.NumberFormat("en", {
-                style: "currency",
-                currency: "USD"
-            }).format(price)}
-        </Ribbon>
+        <Ribbon color="secondary">{formatPrice(price)}</Ribbon>
 
         <Description>{description}</Description>
 
