@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
     FavoriteBorder,
     Favorite,
@@ -20,6 +22,7 @@ import Button from "components/Button";
 import Ribbon, { RibbonSizes, RibbonColors } from "components/Ribbon";
 
 export type GamecardProps = {
+    slug: string;
     title: string;
     developer: string;
     img: string;
@@ -33,6 +36,7 @@ export type GamecardProps = {
 };
 
 const Gamecard = ({
+    slug,
     title,
     developer,
     img,
@@ -51,15 +55,19 @@ const Gamecard = ({
             </Ribbon>
         )}
 
-        <ImageBox>
-            <img src={img} alt={title} />
-        </ImageBox>
+        <Link href={`game/${slug}`} passHref>
+            <ImageBox>
+                <img src={img} alt={title} />
+            </ImageBox>
+        </Link>
 
         <Content>
-            <Info>
-                <Title>{title}</Title>
-                <Developer>{developer}</Developer>
-            </Info>
+            <Link href={`game/${slug}`} passHref>
+                <Info>
+                    <Title>{title}</Title>
+                    <Developer>{developer}</Developer>
+                </Info>
+            </Link>
             <FavButton role="button" onClick={onFav}>
                 {favorite ? (
                     <Favorite aria-label="Remove from wishlist" />
