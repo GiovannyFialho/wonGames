@@ -6,11 +6,9 @@ export const HighlightFragment = gql`
         subtitle
         background {
             url
-            alternativeText
         }
         floatImage {
             url
-            alternativeText
         }
         buttonLabel
         buttonLink

@@ -96,13 +96,11 @@ export interface QueryHome_freeGames {
 export interface QueryHome_sections_newGames_highlight_background {
   __typename: "UploadFile";
   url: string;
-  alternativeText: string | null;
 }
 
 export interface QueryHome_sections_newGames_highlight_floatImage {
   __typename: "UploadFile";
   url: string;
-  alternativeText: string | null;
 }
 
 export interface QueryHome_sections_newGames_highlight {
@@ -125,13 +123,11 @@ export interface QueryHome_sections_newGames {
 export interface QueryHome_sections_popularGames_highlight_background {
   __typename: "UploadFile";
   url: string;
-  alternativeText: string | null;
 }
 
 export interface QueryHome_sections_popularGames_highlight_floatImage {
   __typename: "UploadFile";
   url: string;
-  alternativeText: string | null;
 }
 
 export interface QueryHome_sections_popularGames_highlight {
@@ -174,13 +170,11 @@ export interface QueryHome_sections_popularGames {
 export interface QueryHome_sections_upcomingGames_highlight_background {
   __typename: "UploadFile";
   url: string;
-  alternativeText: string | null;
 }
 
 export interface QueryHome_sections_upcomingGames_highlight_floatImage {
   __typename: "UploadFile";
   url: string;
-  alternativeText: string | null;
 }
 
 export interface QueryHome_sections_upcomingGames_highlight {
@@ -203,13 +197,11 @@ export interface QueryHome_sections_upcomingGames {
 export interface QueryHome_sections_freeGames_highlight_background {
   __typename: "UploadFile";
   url: string;
-  alternativeText: string | null;
 }
 
 export interface QueryHome_sections_freeGames_highlight_floatImage {
   __typename: "UploadFile";
   url: string;
-  alternativeText: string | null;
 }
 
 export interface QueryHome_sections_freeGames_highlight {
