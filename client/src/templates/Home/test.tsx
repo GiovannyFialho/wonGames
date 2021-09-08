@@ -6,16 +6,19 @@ import bannerMock from "components/BannerSlider/mock";
 import gamesMock from "components/GamecardSlider/mock";
 import highlightMock from "components/Highlight/mock";
 
-import Home from ".";
+import Home, { HomeTemplateProps } from ".";
 
-const props = {
+const props: HomeTemplateProps = {
     banners: bannerMock,
+    newGamesTitle: "New games",
     newGames: [gamesMock[0]],
+    mostPopularGamesTitle: "Jogos populares",
     mostPopularHighlight: highlightMock,
     mostPopularGames: [gamesMock[0]],
+    upcomingGamesTitle: "Jogos que estão por vir",
     upcomingGames: [gamesMock[0]],
     upcomingHighlight: highlightMock,
-    upcomingMoreGames: [gamesMock[0]],
+    freeGamesTitle: "Jogos grátis",
     freeGames: [gamesMock[0]],
     freeHighlight: highlightMock
 };
