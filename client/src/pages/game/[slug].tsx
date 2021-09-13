@@ -8,6 +8,8 @@ import {
     QueryGameBySlugVariables
 } from "graphql/generated/QueryGameBySlug";
 
+import { QueryRecommended } from "graphql/generated/QueryRecommended";
+
 import Game, { GameTemplateProps } from "templates/Game";
 
 import galleryMock from "components/Gallery/mock";

@@ -1,18 +1,32 @@
 import Wishlist, { WishlistTemplateProps } from "templates/Wishlist";
 
+import { initializeApollo } from "utils/apollo";
+
 import gamesMock from "components/GamecardSlider/mock";
-import highlightMock from "components/Highlight/mock";
+import { QUERY_RECOMMENDED } from "graphql/queries/recommended";
+import { QueryRecommended } from "graphql/generated/QueryRecommended";
+
+import { gamesMapper, hightlightMapper } from "utils/mappers";
 
 export default function wishlistPage(props: WishlistTemplateProps) {
     return <Wishlist {...props} />;
 }
 
 export async function getStaticProps() {
+    const apolloClient = initializeApollo();
+
+    const { data } = await apolloClient.query<QueryRecommended>({
+        query: QUERY_RECOMMENDED
+    });
+
     return {
         props: {
             games: gamesMock,
-            recommendedGames: gamesMock,
-            recommendedHighlight: highlightMock
+            recommendedTitle: data.recommended?.section?.title,
+            recommendedGames: gamesMapper(data.recommended?.section?.games),
+            recommendedHighlight: hightlightMapper(
+                data.recommended?.section?.highlight
+            )
         }
     };
 }
