@@ -1,23 +1,23 @@
+import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 
 import { initializeApollo } from "utils/apollo";
-import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from "graphql/queries/games";
+
 import { QueryGames, QueryGamesVariables } from "graphql/generated/QueryGames";
 import {
     QueryGameBySlug,
     QueryGameBySlugVariables
 } from "graphql/generated/QueryGameBySlug";
-
 import { QueryRecommended } from "graphql/generated/QueryRecommended";
+import { QueryUpcoming } from "graphql/generated/QueryUpcoming";
+
+import { QUERY_GAMES, QUERY_GAME_BY_SLUG } from "graphql/queries/games";
+import { QUERY_RECOMMENDED } from "graphql/queries/recommended";
+import { QUERY_UPCOMING } from "graphql/queries/upcoming";
 
 import Game, { GameTemplateProps } from "templates/Game";
 
-import galleryMock from "components/Gallery/mock";
-import gamesCardSliderMock from "components/GamecardSlider/mock";
-import highlightMock from "components/Highlight/mock";
-import { GetStaticProps } from "next";
-import { QUERY_RECOMMENDED } from "graphql/queries/recommended";
-import { gamesMapper } from "utils/mappers";
+import { gamesMapper, hightlightMapper } from "utils/mappers";
 
 const apolloClient = initializeApollo();
 
@@ -67,6 +67,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         query: QUERY_RECOMMENDED
     });
 
+    // Get upcoming data
+    const TODAY = new Date().toISOString().slice(0, 10);
+    const { data: upcomingData } = await apolloClient.query<QueryUpcoming>({
+        query: QUERY_UPCOMING,
+        variables: {
+            date: TODAY
+        }
+    });
+
     return {
         props: {
             revalidate: 60,
@@ -89,8 +98,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                 rating: game.rating,
                 genres: game.categories.map((categorie) => categorie.name)
             },
-            upcomingGames: gamesCardSliderMock,
-            upcomingHighlight: highlightMock,
+            upcomingTitle: upcomingData.showcase?.upcomingGames?.title,
+            upcomingGames: gamesMapper(upcomingData.upcomingGames),
+            upcomingHighlight: hightlightMapper(
+                upcomingData.showcase?.upcomingGames?.highlight
+            ),
             recommendedTitle: recommendedData.recommended?.section?.title,
             recommendedGames: gamesMapper(
                 recommendedData.recommended?.section?.games

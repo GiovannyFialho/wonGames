@@ -25,6 +25,7 @@ export type GameTemplateProps = {
     gallery?: GalleryImageProps[];
     description: string;
     details: GameDetailsProps;
+    upcomingTitle: string;
     upcomingGames: GamecardProps[];
     upcomingHighlight: HighlightProps;
     recommendedTitle: string;
@@ -37,6 +38,7 @@ const Game = ({
     gallery,
     description,
     details,
+    upcomingTitle,
     upcomingGames,
     upcomingHighlight,
     recommendedTitle,
@@ -65,7 +67,7 @@ const Game = ({
             </SectionGameDetails>
 
             <Showcase
-                title="Upcoming"
+                title={upcomingTitle}
                 highlight={upcomingHighlight}
                 gamecardSlider={upcomingGames}
             />

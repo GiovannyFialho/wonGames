@@ -4,13 +4,11 @@ import { initializeApollo } from "utils/apollo";
 
 import itemsMock from "components/CartList/mock";
 import cardsMock from "components/PaymentOptions/mock";
-import gamesMock from "components/GamecardSlider/mock";
-import highlightMock from "components/Highlight/mock";
-
-import { gamesMapper, hightlightMapper } from "utils/mappers";
 
 import { QueryRecommended } from "graphql/generated/QueryRecommended";
 import { QUERY_RECOMMENDED } from "graphql/queries/recommended";
+
+import { gamesMapper, hightlightMapper } from "utils/mappers";
 
 export default function CartPage(props: CartProps) {
     return <Cart {...props} />;
