@@ -1,13 +1,15 @@
 import { MockedProvider } from "@apollo/client/testing";
 
-import { QUERY_GAMES } from "graphql/queries/games";
+import apolloCache from "utils/apolloCache";
 
+import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 import { renderWithTheme } from "utils/tests/helpers";
 
 import GamesTemplate from ".";
 
 import mockFilter from "components/ExploreSidebar/mock";
+import { fetchMoreMock, gamesMock } from "./mocks";
 
 jest.mock("templates/Base", () => ({
     __esModule: true,
@@ -38,39 +40,7 @@ describe("<GamesTemplate />", () => {
 
     it("should render sections", async () => {
         renderWithTheme(
-            <MockedProvider
-                mocks={[
-                    {
-                        request: {
-                            query: QUERY_GAMES,
-                            variables: { limit: 15 }
-                        },
-                        result: {
-                            data: {
-                                games: [
-                                    {
-                                        name: "Silent Hill 4: The Room",
-                                        slug: "silent-hill-4-the-room",
-                                        price: 39.89,
-                                        cover: {
-                                            url:
-                                                "/uploads/silent_hill_4_the_room_75abd0544a.jpg",
-                                            __typename: "UploadFile"
-                                        },
-                                        developers: [
-                                            {
-                                                name: "Team Silent",
-                                                __typename: "Developer"
-                                            }
-                                        ],
-                                        __typename: "Game"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                ]}
-            >
+            <MockedProvider mocks={[gamesMock]}>
                 <GamesTemplate filterItems={mockFilter} />
             </MockedProvider>
         );
@@ -89,6 +59,29 @@ describe("<GamesTemplate />", () => {
 
         expect(
             await screen.findByRole("button", { name: /show more/i })
+        ).toBeInTheDocument();
+    });
+
+    it("should render more games when show more is clicked", async () => {
+        renderWithTheme(
+            <MockedProvider
+                mocks={[gamesMock, fetchMoreMock]}
+                cache={apolloCache}
+            >
+                <GamesTemplate filterItems={mockFilter} />
+            </MockedProvider>
+        );
+
+        expect(
+            await screen.findByText(/Silent Hill 4: The Room/i)
+        ).toBeInTheDocument();
+
+        userEvent.click(
+            await screen.findByRole("button", { name: /show more/i })
+        );
+
+        expect(
+            await screen.findByText(/Metro Exodus - Gold Edition/i)
         ).toBeInTheDocument();
     });
 });
