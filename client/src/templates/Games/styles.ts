@@ -26,3 +26,7 @@ export const ShowMore = styled.div`
         }
     `}
 `;
+
+export const ShowMoreLoading = styled.img`
+    width: 4rem;
+`;
