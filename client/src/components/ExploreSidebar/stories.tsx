@@ -7,7 +7,10 @@ export default {
     title: "ExploreSidebar",
     component: ExploreSidebar,
     args: {
-        items: itemsMock
+        items: itemsMock,
+        onFilter: () => {
+            console.log("filter");
+        }
     },
     argTypes: {
         items: {

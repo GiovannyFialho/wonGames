@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Close, FilterList } from "styled-icons/material-outlined";
 import { ParsedUrlQueryInput } from "querystring";
 import xor from "lodash.xor";
@@ -55,10 +55,14 @@ const ExploreSidebar = ({
         setValues((s) => ({ ...s, [name]: xor(currentList, [value]) }));
     };
 
-    const handleFilter = () => {
-        onFilter(values);
+    const handleFilterMenu = () => {
         setIsOpen(false);
     };
+
+    useEffect(() => {
+        onFilter(values);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [values]);
 
     return (
         <Wrapper isOpen={isOpen}>
@@ -120,7 +124,7 @@ const ExploreSidebar = ({
                 ))}
             </Content>
             <Footer>
-                <Button fullWidth size="medium" onClick={handleFilter}>
+                <Button fullWidth size="medium" onClick={handleFilterMenu}>
                     Filter
                 </Button>
             </Footer>
