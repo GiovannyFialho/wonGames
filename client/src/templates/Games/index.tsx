@@ -36,6 +36,12 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
         }
     });
 
+    if (!data) return <p>Loading...</p>;
+
+    const { games, gamesConnection } = data;
+
+    const hasMoreGames = games.length < (gamesConnection?.values?.length || 0);
+
     const handleFilter = (items: ParsedUrlQueryInput) => {
         push({
             pathname: `/games`,
@@ -81,22 +87,24 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
                                 ))}
                             </Grid>
 
-                            <ShowMore>
-                                {loading ? (
-                                    <ShowMoreLoading
-                                        src="/img/dots.svg"
-                                        alt="Loading more games..."
-                                    />
-                                ) : (
-                                    <ShowMoreButton
-                                        role="button"
-                                        onClick={handleShowMore}
-                                    >
-                                        <p>Show more</p>
-                                        <ArrowDown size={35} />
-                                    </ShowMoreButton>
-                                )}
-                            </ShowMore>
+                            {hasMoreGames && (
+                                <ShowMore>
+                                    {loading ? (
+                                        <ShowMoreLoading
+                                            src="/img/dots.svg"
+                                            alt="Loading more games..."
+                                        />
+                                    ) : (
+                                        <ShowMoreButton
+                                            role="button"
+                                            onClick={handleShowMore}
+                                        >
+                                            <p>Show more</p>
+                                            <ArrowDown size={35} />
+                                        </ShowMoreButton>
+                                    )}
+                                </ShowMore>
+                            )}
                         </>
                     ) : (
                         <Empty

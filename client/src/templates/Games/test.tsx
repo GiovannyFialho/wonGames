@@ -9,7 +9,7 @@ import { renderWithTheme } from "utils/tests/helpers";
 import GamesTemplate from ".";
 
 import mockFilter from "components/ExploreSidebar/mock";
-import { fetchMoreMock, gamesMock } from "./mocks";
+import { fetchMoreMock, gamesMock, noGamesMock } from "./mocks";
 
 jest.mock("next/router", () => ({
     useRouter() {
@@ -74,7 +74,7 @@ describe("<GamesTemplate />", () => {
 
     it("should render empty when no games found", async () => {
         renderWithTheme(
-            <MockedProvider mocks={[]} addTypename={false}>
+            <MockedProvider mocks={[noGamesMock]} addTypename={false}>
                 <GamesTemplate filterItems={mockFilter} />
             </MockedProvider>
         );
