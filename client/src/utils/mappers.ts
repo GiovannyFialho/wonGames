@@ -39,7 +39,9 @@ export const hightlightMapper = (
         highlight && {
             title: highlight.title,
             subtitle: highlight.subtitle,
-            backgroundImage: `http://localhost:1337${highlight?.background.url}`,
+            backgroundImage:
+                highlight.background &&
+                `http://localhost:1337${highlight.background.url}`,
             floatImage:
                 highlight.floatImage &&
                 `http://localhost:1337${highlight.floatImage.url}`,
