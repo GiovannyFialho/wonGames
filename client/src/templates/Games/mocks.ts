@@ -25,6 +25,7 @@ export const gamesMock = {
         data: {
             games: [
                 {
+                    id: "1",
                     name: "Silent Hill 4: The Room",
                     slug: "silent-hill-4-the-room",
                     price: 39.89,
@@ -58,6 +59,7 @@ export const fetchMoreMock = {
         data: {
             games: [
                 {
+                    id: "2",
                     name: "Metro Exodus - Gold Edition",
                     slug: "metro-exodus-gold-edition",
                     price: 25.79,
