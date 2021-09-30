@@ -7,9 +7,11 @@ module.exports = {
         "!src/**/stories.tsx",
         "!src/pages/**/*.tsx",
         "!src/styles/**/*.ts",
-        "!src/utils/**/*.ts",
+        "!src/utils/apollo.ts",
+        "!src/utils/apolloCache.ts",
         "!src/graphql/**/*.ts",
-        "!src/types/*.d.ts"
+        "!src/types/*.d.ts",
+        "!src/**/mock.ts"
     ],
     setupFilesAfterEnv: ["<rootDir>/.jest/setup.ts"],
     modulePaths: ["<rootDir>/src/", "<rootDir>/.jest/"]
