@@ -124,8 +124,8 @@ describe("cartMapper()", () => {
             {
                 id: "1",
                 img: "http://localhost:1337/img.jpg",
-                price: "$10.00",
-                title: "game"
+                title: "game",
+                price: "$10.00"
             }
         ]);
     });
