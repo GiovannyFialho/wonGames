@@ -3,7 +3,7 @@ import {
     QueryHome_banners,
     QueryHome_sections_upcomingGames_highlight
 } from "graphql/generated/QueryHome";
-import { bannerMapper, gamesMapper, hightlightMapper } from ".";
+import { bannerMapper, cartMapper, gamesMapper, hightlightMapper } from ".";
 
 describe("bannerMapper()", () => {
     it("should return the right format when mapped", () => {
@@ -102,5 +102,31 @@ describe("hightlightMapper()", () => {
             buttonLink: "button link",
             alignment: "left"
         });
+    });
+});
+
+describe("cartMapper()", () => {
+    it("should return empty array if no games", () => {
+        expect(cartMapper(undefined)).toStrictEqual([]);
+    });
+
+    it("should return mapped item", () => {
+        const game = {
+            id: "1",
+            cover: {
+                url: "/img.jpg"
+            },
+            price: 10,
+            name: "game"
+        } as QueryGames_games;
+
+        expect(cartMapper([game])).toStrictEqual([
+            {
+                id: "1",
+                img: "http://localhost:1337/img.jpg",
+                price: "$10.00",
+                title: "game"
+            }
+        ]);
     });
 });
