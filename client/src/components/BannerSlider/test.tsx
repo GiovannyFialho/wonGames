@@ -1,7 +1,8 @@
 import "match-media-mock";
 
 import BannerSlider from ".";
-import { renderWithTheme } from "utils/tests/helpers";
+
+import { render } from "utils/test-utils";
 
 const items = [
     {
@@ -23,13 +24,13 @@ const items = [
 
 describe("<BannerSlider />", () => {
     it("should render vertical slider", () => {
-        const { container } = renderWithTheme(<BannerSlider items={items} />);
+        const { container } = render(<BannerSlider items={items} />);
 
         expect(container.querySelector(".slick-vertical")).toBeInTheDocument();
     });
 
     it("should render the dots", () => {
-        const { container } = renderWithTheme(<BannerSlider items={items} />);
+        const { container } = render(<BannerSlider items={items} />);
 
         expect(container.querySelector(".slick-dots")).toBeInTheDocument();
         expect(container.querySelector(".slick-dots")).toHaveStyle({

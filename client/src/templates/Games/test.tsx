@@ -1,10 +1,8 @@
 import { MockedProvider } from "@apollo/client/testing";
+import userEvent from "@testing-library/user-event";
 
 import apolloCache from "utils/apolloCache";
-
-import userEvent from "@testing-library/user-event";
-import { screen } from "@testing-library/react";
-import { renderWithTheme } from "utils/tests/helpers";
+import { render, screen } from "utils/test-utils";
 
 import GamesTemplate from ".";
 
@@ -32,7 +30,7 @@ jest.mock("templates/Base", () => ({
 
 describe("<GamesTemplate />", () => {
     it("should render sections", async () => {
-        renderWithTheme(
+        render(
             <MockedProvider mocks={[gamesMock]}>
                 <GamesTemplate filterItems={mockFilter} />
             </MockedProvider>
@@ -50,7 +48,7 @@ describe("<GamesTemplate />", () => {
     });
 
     it("should render more games when show more is clicked", async () => {
-        renderWithTheme(
+        render(
             <MockedProvider
                 mocks={[gamesMock, fetchMoreMock]}
                 cache={apolloCache}
@@ -73,7 +71,7 @@ describe("<GamesTemplate />", () => {
     });
 
     it("should render empty when no games found", async () => {
-        renderWithTheme(
+        render(
             <MockedProvider mocks={[noGamesMock]} addTypename={false}>
                 <GamesTemplate filterItems={mockFilter} />
             </MockedProvider>

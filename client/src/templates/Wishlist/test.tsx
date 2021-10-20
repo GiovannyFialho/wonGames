@@ -1,5 +1,4 @@
-import { screen } from "@testing-library/react";
-import { renderWithTheme } from "utils/tests/helpers";
+import { render, screen } from "utils/test-utils";
 
 import Wishlist, { WishlistTemplateProps } from ".";
 
@@ -22,14 +21,14 @@ jest.mock("components/Showcase", () => ({
 
 describe("<Wishlist />", () => {
     it("should render template with components", () => {
-        renderWithTheme(<Wishlist {...props} />);
+        render(<Wishlist {...props} />);
 
         expect(screen.getAllByText(/population zero/i)).toHaveLength(6);
         expect(screen.getByTestId("Showcase Mock")).toBeInTheDocument();
     });
 
     it("should render empty there are no games", () => {
-        renderWithTheme(
+        render(
             <Wishlist
                 recommendedTitle="You may like these games"
                 recommendedGames={gamesMock}

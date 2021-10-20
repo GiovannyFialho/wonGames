@@ -1,25 +1,25 @@
-import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Email } from "@styled-icons/material-outlined";
 
-import { renderWithTheme } from "utils/tests/helpers";
+import { render, screen, waitFor } from "utils/test-utils";
+
 import TextField from ".";
 
 describe("<TextField />", () => {
     it("should render with label", () => {
-        renderWithTheme(<TextField label="label aqui" name="label" />);
+        render(<TextField label="label aqui" name="label" />);
 
         expect(screen.getByLabelText(/label aqui/i)).toBeInTheDocument();
     });
 
     it("should render without label", () => {
-        renderWithTheme(<TextField />);
+        render(<TextField />);
 
         expect(screen.queryByLabelText("Label")).not.toBeInTheDocument();
     });
 
     it("should render with placeholder", () => {
-        renderWithTheme(<TextField placeholder="hy you" />);
+        render(<TextField placeholder="hy you" />);
 
         expect(screen.getByPlaceholderText("hy you")).toBeInTheDocument();
     });
@@ -27,7 +27,7 @@ describe("<TextField />", () => {
     it("changes its value when typing", async () => {
         const onInput = jest.fn();
 
-        renderWithTheme(
+        render(
             <TextField
                 label="label aqui"
                 name="input"
@@ -49,7 +49,7 @@ describe("<TextField />", () => {
     });
 
     it("is accessible by tab", () => {
-        renderWithTheme(<TextField label="label aqui" name="input" />);
+        render(<TextField label="label aqui" name="input" />);
 
         expect(document.body).toHaveFocus();
 
@@ -59,13 +59,13 @@ describe("<TextField />", () => {
     });
 
     it("should render with icon", () => {
-        renderWithTheme(<TextField icon={<Email data-testid="icon" />} />);
+        render(<TextField icon={<Email data-testid="icon" />} />);
 
         expect(screen.getByTestId("icon")).toBeInTheDocument();
     });
 
     it("should render icon on right side", () => {
-        renderWithTheme(
+        render(
             <TextField
                 icon={<Email data-testid="icon" />}
                 positionIcon="right"
@@ -80,7 +80,7 @@ describe("<TextField />", () => {
     it("should does not changes its value when disabled", async () => {
         const onInput = jest.fn();
 
-        renderWithTheme(
+        render(
             <TextField
                 label="label aqui"
                 name="input"
@@ -103,7 +103,7 @@ describe("<TextField />", () => {
     });
 
     it("should is not accessible by tab when disabled", () => {
-        renderWithTheme(<TextField label="label aqui" name="input" disabled />);
+        render(<TextField label="label aqui" name="input" disabled />);
 
         expect(document.body).toHaveFocus();
 
@@ -113,7 +113,7 @@ describe("<TextField />", () => {
     });
 
     it("should render with erros", () => {
-        const { container } = renderWithTheme(
+        const { container } = render(
             <TextField
                 label="label aqui"
                 name="input"

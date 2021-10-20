@@ -1,8 +1,8 @@
 import "match-media-mock";
-import { screen } from "@testing-library/react";
+
+import { render, screen } from "utils/test-utils";
 
 import GamecardSlider from ".";
-import { renderWithTheme } from "utils/tests/helpers";
 
 const items = [
     {
@@ -48,17 +48,16 @@ const items = [
         promotionalPrice: "R$ 215,00"
     }
 ];
+
 describe("<GamecardSlider />", () => {
     it("should render with 4 active items", () => {
-        const { container } = renderWithTheme(<GamecardSlider items={items} />);
+        const { container } = render(<GamecardSlider items={items} />);
 
         expect(container.querySelectorAll(".slick-active")).toHaveLength(4);
     });
 
     it("should render white arrows if color passed", () => {
-        const { container } = renderWithTheme(
-            <GamecardSlider color="white" items={items} />
-        );
+        render(<GamecardSlider color="white" items={items} />);
 
         expect(screen.getByLabelText(/next games/i)).toHaveStyle({
             color: "#FAFAFA"

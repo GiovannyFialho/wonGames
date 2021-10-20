@@ -1,11 +1,10 @@
-import { screen } from "@testing-library/react";
+import { render, screen } from "utils/test-utils";
 
-import { renderWithTheme } from "utils/tests/helpers";
 import Footer from ".";
 
 describe("<Footer />", () => {
     it("should render 4 columns topics", () => {
-        const { container } = renderWithTheme(<Footer />);
+        const { container } = render(<Footer />);
 
         expect(
             screen.getByRole("heading", { name: /Contact/i })

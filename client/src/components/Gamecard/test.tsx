@@ -1,6 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
-import { renderWithTheme } from "utils/tests/helpers";
-
+import { render, screen, fireEvent } from "utils/test-utils";
 import Gamecard from ".";
 import theme from "styles/theme";
 
@@ -14,7 +12,7 @@ const props = {
 
 describe("<Gamecard />", () => {
     it("should render correctly", () => {
-        renderWithTheme(<Gamecard {...props} />);
+        render(<Gamecard {...props} />);
 
         expect(
             screen.getByRole("heading", { name: props.title })
@@ -38,7 +36,7 @@ describe("<Gamecard />", () => {
     });
 
     it("should render price in label", () => {
-        renderWithTheme(<Gamecard {...props} />);
+        render(<Gamecard {...props} />);
 
         const price = screen.getByText("$235.00");
 
@@ -50,7 +48,7 @@ describe("<Gamecard />", () => {
     });
 
     it("should render a line-through in price when promotional", () => {
-        renderWithTheme(<Gamecard {...props} promotionalPrice={50} />);
+        render(<Gamecard {...props} promotionalPrice={50} />);
 
         expect(screen.getByText("$235.00")).toHaveStyle({
             textDecoration: "line-through"
@@ -62,7 +60,7 @@ describe("<Gamecard />", () => {
     });
 
     it("should render a filled Favorite icon when favorite is true", () => {
-        renderWithTheme(<Gamecard {...props} favorite />);
+        render(<Gamecard {...props} favorite />);
 
         expect(
             screen.getByLabelText(/remove from wishlist/i)
@@ -72,7 +70,7 @@ describe("<Gamecard />", () => {
     it("should call onFav method when favorite is cliked", () => {
         const onFav = jest.fn();
 
-        renderWithTheme(<Gamecard {...props} favorite onFav={onFav} />);
+        render(<Gamecard {...props} favorite onFav={onFav} />);
 
         fireEvent.click(screen.getAllByRole("button")[0]);
 
@@ -80,7 +78,7 @@ describe("<Gamecard />", () => {
     });
 
     it("should render a Ribbon", () => {
-        renderWithTheme(
+        render(
             <Gamecard
                 {...props}
                 ribbon="My Ribbon"

@@ -1,12 +1,12 @@
-import { screen, waitFor } from "@testing-library/react";
-import { renderWithTheme } from "utils/tests/helpers";
 import userEvent from "@testing-library/user-event";
+
+import { render, screen, waitFor } from "utils/test-utils";
 
 import Checkbox from ".";
 
 describe("<Checkbox />", () => {
     it("should render with label", () => {
-        const { container } = renderWithTheme(
+        const { container } = render(
             <Checkbox label="label aqui" labelFor="check" />
         );
 
@@ -18,13 +18,13 @@ describe("<Checkbox />", () => {
     });
 
     it("should render without label", () => {
-        renderWithTheme(<Checkbox />);
+        render(<Checkbox />);
 
         expect(screen.queryByLabelText("Checkbox")).not.toBeInTheDocument();
     });
 
     it("should render with black label", () => {
-        renderWithTheme(
+        render(
             <Checkbox label="label aqui" labelFor="check" labelColor="black" />
         );
 
@@ -36,7 +36,7 @@ describe("<Checkbox />", () => {
     it("should dispatch onCheck when status changes", async () => {
         const onCheck = jest.fn();
 
-        renderWithTheme(<Checkbox label="label aqui" onCheck={onCheck} />);
+        render(<Checkbox label="label aqui" onCheck={onCheck} />);
 
         expect(onCheck).not.toHaveBeenCalled();
         userEvent.click(screen.getByRole("checkbox"));
@@ -49,9 +49,7 @@ describe("<Checkbox />", () => {
     it("should verify value isChecked", async () => {
         const onCheck = jest.fn();
 
-        renderWithTheme(
-            <Checkbox label="label aqui" onCheck={onCheck} isChecked />
-        );
+        render(<Checkbox label="label aqui" onCheck={onCheck} isChecked />);
 
         userEvent.click(screen.getByRole("checkbox"));
         await waitFor(() => {
@@ -61,7 +59,7 @@ describe("<Checkbox />", () => {
     });
 
     it("should be accessible with tab", () => {
-        renderWithTheme(<Checkbox label="label aqui" labelFor="check" />);
+        render(<Checkbox label="label aqui" labelFor="check" />);
 
         expect(document.body).toHaveFocus();
 
