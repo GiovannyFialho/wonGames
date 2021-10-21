@@ -11,7 +11,8 @@ module.exports = {
         "!src/utils/apolloCache.ts",
         "!src/graphql/**/*.ts",
         "!src/types/*.d.ts",
-        "!src/**/mock.ts"
+        "!src/**/mock.ts",
+        "!src/hooks/use-cart/index.tsx"
     ],
     setupFilesAfterEnv: ["<rootDir>/.jest/setup.ts"],
     modulePaths: ["<rootDir>/src/", "<rootDir>/.jest/"]
