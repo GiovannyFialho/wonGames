@@ -3,6 +3,7 @@ import Gamecard from ".";
 import theme from "styles/theme";
 
 const props = {
+    id: "1",
     slug: "population-zero",
     title: "Population Zero",
     developer: "Rockstar Games",

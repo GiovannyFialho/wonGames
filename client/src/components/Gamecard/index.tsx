@@ -8,6 +8,9 @@ import {
 
 import formatPrice from "utils/formatPrice";
 
+import Ribbon, { RibbonSizes, RibbonColors } from "components/Ribbon";
+import CartButton from "components/CartButton";
+
 import {
     Wrapper,
     ImageBox,
@@ -20,10 +23,8 @@ import {
     Content
 } from "./styles";
 
-import Button from "components/Button";
-import Ribbon, { RibbonSizes, RibbonColors } from "components/Ribbon";
-
 export type GamecardProps = {
+    id: string;
     slug: string;
     title: string;
     developer: string;
@@ -38,6 +39,7 @@ export type GamecardProps = {
 };
 
 const Gamecard = ({
+    id,
     slug,
     title,
     developer,
@@ -82,7 +84,7 @@ const Gamecard = ({
                     <Price isPromotional>{formatPrice(price)}</Price>
                 )}
                 <Price>{formatPrice(promotionalPrice || price)}</Price>
-                <Button icon={<AddShoppingCart />} size="small" />
+                <CartButton id={id} />
             </BuyBox>
         </Content>
     </Wrapper>
