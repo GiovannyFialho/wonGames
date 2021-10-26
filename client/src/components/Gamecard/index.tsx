@@ -1,10 +1,5 @@
 import Link from "next/link";
-
-import {
-    FavoriteBorder,
-    Favorite,
-    AddShoppingCart
-} from "@styled-icons/material-outlined";
+import { FavoriteBorder, Favorite } from "@styled-icons/material-outlined";
 
 import formatPrice from "utils/formatPrice";
 
