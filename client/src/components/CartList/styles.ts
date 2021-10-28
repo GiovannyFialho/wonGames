@@ -37,6 +37,21 @@ export const Wrapper = styled.main<WrapperProps>`
     `}
 `;
 
+export const WrapperLoading = styled.div`
+    ${({ theme }) => css`
+        background: ${theme.colors.white};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40rem;
+        min-width: 56rem;
+        svg {
+            height: 10rem;
+            width: 10rem;
+        }
+    `}
+`;
+
 export const Footer = styled.div`
     ${({ theme }) => css`
         background: ${tint(0.2, theme.colors.lightGray)};

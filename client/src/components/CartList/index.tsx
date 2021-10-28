@@ -3,16 +3,25 @@ import Link from "next/link";
 import { useCart } from "hooks/use-cart";
 import GameItem from "components/GameItem";
 import Button from "components/Button";
-
-import { Wrapper, Footer, Total } from "./styles";
 import Empty from "components/Empty";
+import Loader from "components/Loader";
+
+import { Wrapper, WrapperLoading, Footer, Total } from "./styles";
 
 export type CartListProps = {
     hasButton?: boolean;
 };
 
 const CartList = ({ hasButton = false }: CartListProps) => {
-    const { items, total } = useCart();
+    const { items, total, loading } = useCart();
+
+    if (loading) {
+        return (
+            <WrapperLoading>
+                <Loader />
+            </WrapperLoading>
+        );
+    }
 
     return (
         <Wrapper isEmpty={!items.length}>
