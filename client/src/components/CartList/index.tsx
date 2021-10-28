@@ -6,7 +6,7 @@ import Button from "components/Button";
 import Empty from "components/Empty";
 import Loader from "components/Loader";
 
-import { Wrapper, WrapperLoading, Footer, Total } from "./styles";
+import { Wrapper, WrapperLoading, GamesList, Footer, Total } from "./styles";
 
 export type CartListProps = {
     hasButton?: boolean;
@@ -27,9 +27,11 @@ const CartList = ({ hasButton = false }: CartListProps) => {
         <Wrapper isEmpty={!items.length}>
             {items.length ? (
                 <>
-                    {items.map((item) => (
-                        <GameItem key={item.title} {...item} />
-                    ))}
+                    <GamesList>
+                        {items.map((item) => (
+                            <GameItem key={item.title} {...item} />
+                        ))}
+                    </GamesList>
 
                     <Footer>
                         {!hasButton && <span>Total:</span>}
