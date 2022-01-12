@@ -8,7 +8,7 @@ export type TextFieldProps = {
     positionIcon?: "left" | "right";
     disabled?: boolean;
     error?: string;
-    onInput?: (value?: string) => void;
+    onInputChange?: (value?: string) => void;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 const TextField = ({
@@ -17,7 +17,7 @@ const TextField = ({
     initialValue = "",
     icon,
     positionIcon = "left",
-    onInput,
+    onInputChange,
     disabled = false,
     error,
     ...props
@@ -28,7 +28,7 @@ const TextField = ({
         const newValue = e.currentTarget.value;
         setValue(newValue);
 
-        !!onInput && onInput(newValue);
+        !!onInputChange && onInputChange(newValue);
     };
 
     return (

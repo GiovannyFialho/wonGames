@@ -1,10 +1,15 @@
+import { MockedProvider } from "@apollo/client/testing";
 import { render, screen } from "utils/test-utils";
 
 import FormSignUp from ".";
 
 describe("<FormSignUp />", () => {
     it("should render the form", () => {
-        const { container } = render(<FormSignUp />);
+        const { container } = render(
+            <MockedProvider>
+                <FormSignUp />
+            </MockedProvider>
+        );
 
         expect(screen.getByPlaceholderText(/name/i)).toBeInTheDocument();
 

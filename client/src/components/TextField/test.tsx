@@ -25,14 +25,14 @@ describe("<TextField />", () => {
     });
 
     it("changes its value when typing", async () => {
-        const onInput = jest.fn();
+        const onInputChange = jest.fn();
 
         render(
             <TextField
                 label="label aqui"
                 name="input"
                 id="input"
-                onInput={onInput}
+                onInputChange={onInputChange}
             />
         );
 
@@ -42,10 +42,10 @@ describe("<TextField />", () => {
 
         await waitFor(() => {
             expect(input).toHaveValue(text);
-            expect(onInput).toHaveBeenCalledTimes(text.length);
+            expect(onInputChange).toHaveBeenCalledTimes(text.length);
         });
 
-        expect(onInput).toHaveBeenCalledWith(text);
+        expect(onInputChange).toHaveBeenCalledWith(text);
     });
 
     it("is accessible by tab", () => {
@@ -78,13 +78,13 @@ describe("<TextField />", () => {
     });
 
     it("should does not changes its value when disabled", async () => {
-        const onInput = jest.fn();
+        const onInputChange = jest.fn();
 
         render(
             <TextField
                 label="label aqui"
                 name="input"
-                onInput={onInput}
+                onInputChange={onInputChange}
                 disabled
             />
         );
@@ -99,7 +99,7 @@ describe("<TextField />", () => {
             expect(input).not.toHaveValue(text);
         });
 
-        expect(onInput).not.toHaveBeenCalled();
+        expect(onInputChange).not.toHaveBeenCalled();
     });
 
     it("should is not accessible by tab when disabled", () => {
