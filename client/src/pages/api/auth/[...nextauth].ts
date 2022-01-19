@@ -1,21 +1,28 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-import { NextApiRequest, NextApiResponse } from "next";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
+import {
+    GenericObject,
+    NextApiRequest,
+    NextApiResponse
+} from "next-auth/_utils";
 
-const options: NextAuthOptions = {
+const options = {
     pages: {
         signIn: "/sign-in"
     },
     providers: [
-        CredentialsProvider({
-            name: "Sing-in",
+        Providers.Credentials({
+            name: "Sign-in",
             credentials: {},
-            async authorize(credentials) {
+            async authorize({ email, password }) {
                 const response = await fetch(
                     `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
                     {
                         method: "POST",
-                        body: new URLSearchParams(credentials)
+                        body: new URLSearchParams({
+                            identifier: email,
+                            password
+                        })
                     }
                 );
 
@@ -30,17 +37,17 @@ const options: NextAuthOptions = {
         })
     ],
     callbacks: {
-        session: async ({ session, user }) => {
+        session: async (session: GenericObject, user: GenericObject) => {
             session.jwt = user.jwt;
             session.id = user.id;
 
             return Promise.resolve(session);
         },
-        jwt: async ({ token, user }) => {
+        jwt: async (token: GenericObject, user: GenericObject) => {
             if (user) {
                 token.id = user.id;
                 token.email = user.email;
-                token.name = user.name;
+                token.name = user.username;
                 token.jwt = user.jwt;
             }
 
@@ -49,5 +56,7 @@ const options: NextAuthOptions = {
     }
 };
 
-export default (req: NextApiRequest, res: NextApiResponse) =>
+const Auth = (req: NextApiRequest, res: NextApiResponse) =>
     NextAuth(req, res, options);
+
+export default Auth;
