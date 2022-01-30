@@ -2,13 +2,13 @@ import React, { InputHTMLAttributes, useState } from "react";
 import { Wrapper, InputWrapper, Input, Label, Icon, Error } from "./styles";
 
 export type TextFieldProps = {
+    onInputChange?: (value?: string) => void;
     label?: string;
     initialValue?: string;
     icon?: JSX.Element;
     positionIcon?: "left" | "right";
     disabled?: boolean;
     error?: string;
-    onInputChange?: (value?: string) => void;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 const TextField = ({
@@ -17,9 +17,9 @@ const TextField = ({
     initialValue = "",
     icon,
     positionIcon = "left",
-    onInputChange,
     disabled = false,
     error,
+    onInputChange,
     ...props
 }: TextFieldProps) => {
     const [value, setValue] = useState(initialValue);

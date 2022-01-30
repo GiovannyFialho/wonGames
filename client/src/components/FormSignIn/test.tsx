@@ -29,7 +29,7 @@ describe("<FormSignIn />", () => {
             screen.getByRole("link", { name: /Forgot your password?/i })
         ).toBeInTheDocument();
 
-        expect(screen.getByText(/don't have an account?/i)).toBeInTheDocument();
+        expect(screen.getByText(/dont have an account?/i)).toBeInTheDocument();
 
         expect(
             screen.getByRole("link", { name: /sign Up/i })

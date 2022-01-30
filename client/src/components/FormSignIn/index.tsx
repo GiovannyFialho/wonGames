@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { signIn } from "next-auth/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
 import { Email, Lock } from "@styled-icons/material-outlined";
-import { signIn } from "next-auth/client";
 
 import { FormWrapper, FormLink, FormLoading } from "components/Form";
 import TextField from "components/TextField";
@@ -11,9 +12,10 @@ import Button from "components/Button";
 import { ForgotPassword } from "./styles";
 
 const FormSignIn = () => {
-    const [values, setValues] = useState({});
-    const [loading, setLoading] = useState(false);
     const { push } = useRouter();
+
+    const [values, setValues] = useState({ email: "", password: "" });
+    const [loading, setLoading] = useState(false);
 
     const handleInput = (field: string, value: string) => {
         setValues((s) => ({ ...s, [field]: value }));
@@ -35,6 +37,8 @@ const FormSignIn = () => {
         }
 
         setLoading(false);
+
+        console.error("Email ou Senha inválido");
     };
 
     return (
@@ -63,7 +67,7 @@ const FormSignIn = () => {
                 </Button>
 
                 <FormLink>
-                    Don't have an account?{" "}
+                    Dont have an account?{" "}
                     <Link href="sign-up">
                         <a>Sign Up</a>
                     </Link>

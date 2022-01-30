@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { signIn } from "next-auth/client";
 import Link from "next/link";
 import { useMutation } from "@apollo/client";
 import { AccountCircle, Email, Lock } from "@styled-icons/material-outlined";
-import { signIn } from "next-auth/client";
 
 import { UsersPermissionsRegisterInput } from "graphql/generated/globalTypes";
 import { MUTATION_REGISTER } from "graphql/mutations/register";
@@ -19,7 +19,8 @@ const FormSignUp = () => {
     });
 
     const [createUser, { error, loading }] = useMutation(MUTATION_REGISTER, {
-        onError: (err) => console.error(err),
+        onError: (err) =>
+            console.error(`Entrou no onError mostrando esse erro: ${err}`),
         onCompleted: () => {
             !error &&
                 signIn("credentials", {
@@ -63,7 +64,7 @@ const FormSignUp = () => {
                     name="email"
                     placeholder="e-mail"
                     type="email"
-                    onInputChange={(v) => handleInput("identifier", v)}
+                    onInputChange={(v) => handleInput("email", v)}
                     icon={<Email />}
                 />
 

@@ -1,8 +1,9 @@
 import NextNprogress from "nextjs-progressbar";
+
+import { Provider as AuthProvider } from "next-auth/client";
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "styled-components";
 import { CartProvider } from "hooks/use-cart";
-import { Provider as AuthProvider } from "next-auth/client";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";

@@ -32,6 +32,7 @@ type LinkItemProps = {
 
 export const LinkItem = styled.a<LinkItemProps>`
     ${({ theme, isActive }) => css`
+        cursor: pointer;
         text-decoration: none;
         display: flex;
         align-items: center;
