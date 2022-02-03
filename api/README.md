@@ -21,6 +21,7 @@ Esse projeto usa a rota `/games/populate` para popular os dados do site GoG.
 Siga esses passo-a-passo:
 - Vá até Roles & Permissions > Public e verifique se a rota `game:populate` está disponível para fazer o upload corretamente.
 - Com o Strapi ligado, execute o seguinte comando no terminal:
+> Não se esquecer de liberar as rotas de GET e POST para Aplicação: Roles & Permissions > Public > Na seção Aplication liberar todos os GETs e em Upload (no final da página) liberar tudo!
 ```bash
 $ curl -X POST http://localhost:1337/games/populate
 
