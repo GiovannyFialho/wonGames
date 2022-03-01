@@ -25,7 +25,7 @@ const FormProfile = ({ username, email }: FormProfileProps) => (
             <TextField
                 name="email"
                 type="email"
-                placeholder="Email"
+                placeholder="E-mail"
                 label="E-mail"
                 initialValue={email}
                 disabled
