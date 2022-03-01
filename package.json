@@ -5,7 +5,8 @@
     "scripts": {
         "lint": "cd client && yarn eslint src --max-warnings=0",
         "typecheck": "cd client && yarn tsc --project tsconfig.json --noEmit",
-        "test": "cd client && yarn jest"
+        "test": "cd client && yarn jest",
+        "prepare": "husky install"
     },
     "husky": {
         "hooks": {
@@ -14,9 +15,8 @@
     },
     "lint-staged": {
         "client/src/**/*": [
-            "cd client && yarn eslint src --max-warnings=0 --fix",
-            "cd client && yarn tsc --project tsconfig.json --noEmit",
-            "cd client && yarn jest --findRelatedTests --bail"
+            "cd client && yarn lint --fix",
+            "cd client && yarn test --findRelatedTests --bail"
         ]
     },
     "repository": "git@github.com:GiovannyFialho/wonGames.git",
