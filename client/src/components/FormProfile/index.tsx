@@ -4,7 +4,12 @@ import TextField from "components/TextField";
 
 import { Form } from "./styles";
 
-const FormProfile = () => (
+export type FormProfileProps = {
+    username?: string;
+    email?: string;
+};
+
+const FormProfile = ({ username, email }: FormProfileProps) => (
     <>
         <Heading size="small" lineColor="primary" color="black" lineBottom>
             My profile
@@ -12,17 +17,17 @@ const FormProfile = () => (
 
         <Form>
             <TextField
-                name="Name"
-                placeholder="Name"
-                label="Name"
-                initialValue="Giovanny"
+                name="username"
+                placeholder="Username"
+                label="Username"
+                initialValue={username}
             />
             <TextField
                 name="email"
                 type="email"
                 placeholder="E-mail"
                 label="E-mail"
-                initialValue="giovannyf@outlook.com"
+                initialValue={email}
                 disabled
             />
             <TextField
