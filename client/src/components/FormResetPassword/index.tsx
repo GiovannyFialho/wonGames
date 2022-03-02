@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { signIn } from "next-auth/client";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { Email, Lock, ErrorOutline } from "@styled-icons/material-outlined";
+import { Lock, ErrorOutline } from "@styled-icons/material-outlined";
 
-import { FormWrapper, FormLink, FormLoading, FormError } from "components/Form";
+import { FormWrapper, FormLoading, FormError } from "components/Form";
 import TextField from "components/TextField";
 import Button from "components/Button";
 
-import { FieldErrors, signInValidate } from "utils/validations";
+import { FieldErrors, resetValidate } from "utils/validations";
 
-import { ForgotPassword } from "./styles";
-
-const FormSignIn = () => {
+const FormResetPassword = () => {
     const routes = useRouter();
     const { push, query } = routes;
 
-    const [values, setValues] = useState({ email: "", password: "" });
+    const [values, setValues] = useState({
+        password: "",
+        confirm_password: ""
+    });
     const [loading, setLoading] = useState(false);
     const [fieldError, setFieldError] = useState<FieldErrors>({});
     const [formError, setFormError] = useState("");
@@ -29,7 +29,7 @@ const FormSignIn = () => {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        const errors = signInValidate(values);
+        const errors = resetValidate(values);
 
         if (Object.keys(errors).length) {
             setFieldError(errors);
@@ -65,15 +65,6 @@ const FormSignIn = () => {
             )}
             <form onSubmit={handleSubmit}>
                 <TextField
-                    name="email"
-                    placeholder="e-mail"
-                    type="email"
-                    error={fieldError?.email}
-                    onInputChange={(v) => handleInput("email", v)}
-                    icon={<Email />}
-                />
-
-                <TextField
                     name="password"
                     placeholder="password"
                     type="password"
@@ -82,23 +73,21 @@ const FormSignIn = () => {
                     icon={<Lock />}
                 />
 
-                <Link href="/forgot-password" passHref>
-                    <ForgotPassword>Forgot your password?</ForgotPassword>
-                </Link>
+                <TextField
+                    name="confirm_password"
+                    placeholder="confirm password"
+                    type="password"
+                    error={fieldError?.confirm_password}
+                    onInputChange={(v) => handleInput("confirm_password", v)}
+                    icon={<Lock />}
+                />
 
                 <Button type="submit" size="large" fullWidth disabled={loading}>
-                    {loading ? <FormLoading /> : <span>Sign in now</span>}
+                    {loading ? <FormLoading /> : <span>Reset password</span>}
                 </Button>
-
-                <FormLink>
-                    Dont have an account?{" "}
-                    <Link href="sign-up">
-                        <a>Sign Up</a>
-                    </Link>
-                </FormLink>
             </form>
         </FormWrapper>
     );
 };
 
-export default FormSignIn;
+export default FormResetPassword;
