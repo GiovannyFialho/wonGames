@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import {
     Email,
@@ -18,7 +19,11 @@ import Button from "components/Button";
 import { FieldErrors, forgotValidate } from "utils/validations";
 
 const FormForgotPassword = () => {
-    const [values, setValues] = useState({ email: "" });
+    const { query } = useRouter();
+
+    const [values, setValues] = useState({
+        email: (query.email as string) || ""
+    });
     const [loading, setLoading] = useState(false);
     const [fieldError, setFieldError] = useState<FieldErrors>({});
     const [formError, setFormError] = useState("");
@@ -84,6 +89,7 @@ const FormForgotPassword = () => {
                             placeholder="e-mail"
                             type="text"
                             error={fieldError?.email}
+                            initialValue={query.email as string}
                             onInputChange={(v) => handleInput("email", v)}
                             icon={<Email />}
                         />
