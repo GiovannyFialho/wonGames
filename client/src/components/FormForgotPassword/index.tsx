@@ -1,23 +1,28 @@
 import { useState } from "react";
-import { signIn } from "next-auth/client";
-import { useRouter } from "next/router";
 
-import { Email, ErrorOutline } from "@styled-icons/material-outlined";
+import {
+    Email,
+    ErrorOutline,
+    CheckCircleOutline
+} from "@styled-icons/material-outlined";
 
-import { FormWrapper, FormLoading, FormError } from "components/Form";
+import {
+    FormWrapper,
+    FormLoading,
+    FormError,
+    FormSuccess
+} from "components/Form";
 import TextField from "components/TextField";
 import Button from "components/Button";
 
 import { FieldErrors, forgotValidate } from "utils/validations";
 
 const FormForgotPassword = () => {
-    const routes = useRouter();
-    const { push, query } = routes;
-
     const [values, setValues] = useState({ email: "" });
     const [loading, setLoading] = useState(false);
     const [fieldError, setFieldError] = useState<FieldErrors>({});
     const [formError, setFormError] = useState("");
+    const [success, setSuccess] = useState(false);
 
     const handleInput = (field: string, value: string) => {
         setValues((s) => ({ ...s, [field]: value }));
@@ -25,6 +30,7 @@ const FormForgotPassword = () => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        setLoading(true);
 
         const errors = forgotValidate(values);
 
@@ -36,44 +42,67 @@ const FormForgotPassword = () => {
         }
 
         setFieldError({});
-        setLoading(true);
 
-        const result = await signIn("credentials", {
-            ...values,
-            redirect: false,
-            callbackUrl: `${window.location.origin}${query?.callbackUrl || ""}`
-        });
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`,
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(values)
+            }
+        );
 
-        if (result?.url) {
-            return push(result.url);
-        }
-
+        const data = await response.json();
         setLoading(false);
-        setFormError("Username or password is invalid");
+
+        if (data.error) {
+            setFormError(data.message[0].messages[0].message);
+        } else {
+            setFormError("");
+            setSuccess(true);
+        }
     };
 
     return (
         <FormWrapper>
-            {!!formError && (
-                <FormError>
-                    <ErrorOutline />
-                    {formError}
-                </FormError>
-            )}
-            <form onSubmit={handleSubmit}>
-                <TextField
-                    name="email"
-                    placeholder="e-mail"
-                    type="email"
-                    error={fieldError?.email}
-                    onInputChange={(v) => handleInput("email", v)}
-                    icon={<Email />}
-                />
+            {success ? (
+                <FormSuccess>
+                    <CheckCircleOutline />
+                    You just received an email!
+                </FormSuccess>
+            ) : (
+                <>
+                    {!!formError && (
+                        <FormError>
+                            <ErrorOutline />
+                            {formError}
+                        </FormError>
+                    )}
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            name="email"
+                            placeholder="e-mail"
+                            type="text"
+                            error={fieldError?.email}
+                            onInputChange={(v) => handleInput("email", v)}
+                            icon={<Email />}
+                        />
 
-                <Button type="submit" size="large" fullWidth disabled={loading}>
-                    {loading ? <FormLoading /> : <span>Send email</span>}
-                </Button>
-            </form>
+                        <Button
+                            type="submit"
+                            size="large"
+                            fullWidth
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <FormLoading />
+                            ) : (
+                                <span>Send email</span>
+                            )}
+                        </Button>
+                    </form>
+                </>
+            )}
         </FormWrapper>
     );
 };
