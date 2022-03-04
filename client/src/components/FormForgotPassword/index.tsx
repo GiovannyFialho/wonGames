@@ -86,7 +86,7 @@ const FormForgotPassword = () => {
                     <form onSubmit={handleSubmit}>
                         <TextField
                             name="email"
-                            placeholder="e-mail"
+                            placeholder="email"
                             type="text"
                             error={fieldError?.email}
                             initialValue={query.email as string}
