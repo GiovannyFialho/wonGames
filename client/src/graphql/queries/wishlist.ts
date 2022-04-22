@@ -1,4 +1,4 @@
-import { gql, QueryHookOptions } from "@apollo/client";
+import { gql, QueryHookOptions, useQuery } from "@apollo/client";
 import { GameFragment } from "graphql/fragments/game";
 import {
     QueryWishlist,
