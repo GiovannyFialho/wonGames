@@ -67,13 +67,7 @@ const Gamecard = ({
                     <Developer>{developer}</Developer>
                 </Info>
             </Link>
-            <FavButton role="button" onClick={onFav}>
-                {favorite ? (
-                    <Favorite aria-label="Remove from wishlist" />
-                ) : (
-                    <FavoriteBorder aria-label="Add to Wishlist" />
-                )}
-            </FavButton>
+            <FavButton role="button" onClick={onFav}></FavButton>
             <BuyBox>
                 {!!promotionalPrice && (
                     <Price isPromotional>{formatPrice(price)}</Price>
