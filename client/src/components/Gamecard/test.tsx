@@ -1,3 +1,5 @@
+import "session.mock";
+
 import { render, screen, fireEvent } from "utils/test-utils";
 import Gamecard from ".";
 import theme from "styles/theme";
@@ -58,24 +60,6 @@ describe("<Gamecard />", () => {
         expect(screen.getByText("$50.00")).not.toHaveStyle({
             textDecoration: "line-through"
         });
-    });
-
-    it("should render a filled Favorite icon when favorite is true", () => {
-        render(<Gamecard {...props} favorite />);
-
-        expect(
-            screen.getByLabelText(/remove from wishlist/i)
-        ).toBeInTheDocument();
-    });
-
-    it("should call onFav method when favorite is cliked", () => {
-        const onFav = jest.fn();
-
-        render(<Gamecard {...props} favorite onFav={onFav} />);
-
-        fireEvent.click(screen.getAllByRole("button")[0]);
-
-        expect(onFav).toBeCalled();
     });
 
     it("should render a Ribbon", () => {
