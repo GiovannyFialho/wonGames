@@ -1,3 +1,5 @@
+import { useWishlist } from "hooks/use-wishlist";
+
 import Base from "templates/Base";
 
 import { Container } from "components/Container";
@@ -8,49 +10,58 @@ import Gamecard, { GamecardProps } from "components/Gamecard";
 import { HighlightProps } from "components/Highlight";
 import Showcase from "components/Showcase";
 import Empty from "components/Empty";
+import Loader from "components/Loader";
+
+import { LoadingWrapper } from "./styles";
 
 export type WishlistTemplateProps = {
-    games?: GamecardProps[];
     recommendedTitle: string;
     recommendedGames: GamecardProps[];
     recommendedHighlight: HighlightProps;
 };
 
 const Wishlist = ({
-    games = [],
     recommendedTitle,
     recommendedGames,
     recommendedHighlight
-}: WishlistTemplateProps) => (
-    <Base>
-        <Container>
-            <Heading color="white" lineLeft lineColor="secondary">
-                Wishlist
-            </Heading>
+}: WishlistTemplateProps) => {
+    const { items, loading } = useWishlist();
 
-            {games.length ? (
-                <Grid>
-                    {games?.map((game, index) => (
-                        <Gamecard key={`wishlist-${index}`} {...game} />
-                    ))}
-                </Grid>
-            ) : (
-                <Empty
-                    title="Your wishlist is empty"
-                    description="Games added to your wishlist will appear here"
-                    hasLink
-                />
-            )}
+    return (
+        <Base>
+            <Container>
+                <Heading color="white" lineLeft lineColor="secondary">
+                    Wishlist
+                </Heading>
 
-            <Divider />
-        </Container>
+                {loading ? (
+                    <LoadingWrapper>
+                        <Loader />
+                    </LoadingWrapper>
+                ) : items.length >= 1 ? (
+                    <Grid>
+                        {items?.map((game, index) => (
+                            <Gamecard key={`wishlist-${index}`} {...game} />
+                        ))}
+                    </Grid>
+                ) : (
+                    <Empty
+                        title="Your wishlist is empty"
+                        description="Games added to your wishlist will appear here"
+                        hasLink
+                    />
+                )}
 
-        <Showcase
-            title={recommendedTitle}
-            highlight={recommendedHighlight}
-            gamecardSlider={recommendedGames}
-        />
-    </Base>
-);
+                <Divider />
+            </Container>
+
+            <Showcase
+                title={recommendedTitle}
+                highlight={recommendedHighlight}
+                gamecardSlider={recommendedGames}
+            />
+        </Base>
+    );
+};
 
 export default Wishlist;
