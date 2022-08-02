@@ -5,7 +5,7 @@ import TextContent from "components/TextContent";
 import GameDetails, { GameDetailsProps } from "components/GameDetails";
 
 import Showcase from "components/Showcase";
-import { GamecardProps } from "components/Gamecard";
+import { GameCardProps } from "components/GameCard";
 import { HighlightProps } from "components/Highlight";
 
 import { Divider } from "components/Divider";
@@ -26,10 +26,10 @@ export type GameTemplateProps = {
     description: string;
     details: GameDetailsProps;
     upcomingTitle: string;
-    upcomingGames: GamecardProps[];
+    upcomingGames: GameCardProps[];
     upcomingHighlight: HighlightProps;
     recommendedTitle: string;
-    recommendedGames: GamecardProps[];
+    recommendedGames: GameCardProps[];
 };
 
 const Game = ({

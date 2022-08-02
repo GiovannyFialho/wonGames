@@ -18,7 +18,7 @@ import {
     Content
 } from "./styles";
 
-export type GamecardProps = {
+export type GameCardProps = {
     id: string;
     slug: string;
     title: string;
@@ -31,7 +31,7 @@ export type GamecardProps = {
     ribbonColor?: RibbonColors;
 };
 
-const Gamecard = ({
+const GameCard = ({
     id,
     slug,
     title,
@@ -42,7 +42,7 @@ const Gamecard = ({
     ribbon,
     ribbonColor = "primary",
     ribbonSize = "small"
-}: GamecardProps) => (
+}: GameCardProps) => (
     <Wrapper>
         {!!ribbon && (
             <Ribbon color={ribbonColor} size={ribbonSize}>
@@ -77,4 +77,4 @@ const Gamecard = ({
     </Wrapper>
 );
 
-export default Gamecard;
+export default GameCard;

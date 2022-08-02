@@ -11,7 +11,7 @@ import {
 import Base from "templates/Base";
 
 import ExploreSidebar, { ItemProps } from "components/ExploreSidebar";
-import Gamecard from "components/Gamecard";
+import GameCard from "components/GameCard";
 import { Grid } from "components/Grid";
 
 import { Main, ShowMore, ShowMoreLoading, ShowMoreButton } from "./styles";
@@ -72,7 +72,7 @@ const GamesTemplate = ({ filterItems }: GamesTemplateProps) => {
                         <>
                             <Grid>
                                 {data?.games.map((game) => (
-                                    <Gamecard
+                                    <GameCard
                                         id={game.id}
                                         key={game.slug}
                                         slug={game.slug}

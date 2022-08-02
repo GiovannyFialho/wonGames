@@ -1,14 +1,14 @@
 import Heading from "components/Heading";
 import Highlight, { HighlightProps } from "components/Highlight";
 import GamecardSlider from "components/GamecardSlider";
-import { GamecardProps } from "components/Gamecard";
+import { GameCardProps } from "components/GameCard";
 
 import { Wrapper } from "./styles";
 
 export type ShowcaseProps = {
     title?: string;
     highlight?: HighlightProps;
-    gamecardSlider?: GamecardProps[];
+    gamecardSlider?: GameCardProps[];
     color?: "white" | "black";
 };
 

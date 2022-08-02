@@ -9,12 +9,6 @@ import { updateWishlistInput } from "./globalTypes";
 // GraphQL mutation operation: MutationUpdateWishlist
 // ====================================================
 
-export interface MutationUpdateWishlist_updateWishlist_wishlist_user {
-  __typename: "UsersPermissionsUser";
-  id: string;
-  username: string;
-}
-
 export interface MutationUpdateWishlist_updateWishlist_wishlist_games_cover {
   __typename: "UploadFile";
   url: string;
@@ -38,7 +32,6 @@ export interface MutationUpdateWishlist_updateWishlist_wishlist_games {
 export interface MutationUpdateWishlist_updateWishlist_wishlist {
   __typename: "Wishlist";
   id: string;
-  user: MutationUpdateWishlist_updateWishlist_wishlist_user | null;
   games: MutationUpdateWishlist_updateWishlist_wishlist_games[];
 }
 
@@ -52,5 +45,5 @@ export interface MutationUpdateWishlist {
 }
 
 export interface MutationUpdateWishlistVariables {
-  input: updateWishlistInput;
+  input?: updateWishlistInput | null;
 }

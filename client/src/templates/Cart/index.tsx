@@ -4,7 +4,7 @@ import { Container } from "components/Container";
 import Heading from "components/Heading";
 import { Divider } from "components/Divider";
 import Showcase from "components/Showcase";
-import { GamecardProps } from "components/Gamecard";
+import { GameCardProps } from "components/GameCard";
 import { HighlightProps } from "components/Highlight";
 import CartList, { CartListProps } from "components/CartList";
 import PaymentOptions, { PaymentOptionsProps } from "components/PaymentOptions";
@@ -13,7 +13,7 @@ import { Content } from "./styles";
 
 export type CartProps = {
     recommendedTitle: string;
-    recommendedGames: GamecardProps[];
+    recommendedGames: GameCardProps[];
     recommendedHighlight: HighlightProps;
 } & CartListProps &
     Pick<PaymentOptionsProps, "cards">;

@@ -6,7 +6,7 @@ import { Container } from "components/Container";
 import { Grid } from "components/Grid";
 import { Divider } from "components/Divider";
 import Heading from "components/Heading";
-import Gamecard, { GamecardProps } from "components/Gamecard";
+import GameCard, { GameCardProps } from "components/GameCard";
 import { HighlightProps } from "components/Highlight";
 import Showcase from "components/Showcase";
 import Empty from "components/Empty";
@@ -16,7 +16,7 @@ import { LoadingWrapper } from "./styles";
 
 export type WishlistTemplateProps = {
     recommendedTitle: string;
-    recommendedGames: GamecardProps[];
+    recommendedGames: GameCardProps[];
     recommendedHighlight: HighlightProps;
 };
 
@@ -41,7 +41,7 @@ const Wishlist = ({
                 ) : items.length >= 1 ? (
                     <Grid>
                         {items?.map((game, index) => (
-                            <Gamecard key={`wishlist-${index}`} {...game} />
+                            <GameCard key={`wishlist-${index}`} {...game} />
                         ))}
                     </Grid>
                 ) : (

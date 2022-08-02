@@ -2,12 +2,12 @@ import { ArrowBackIos as ArrowLeft } from "@styled-icons/material-outlined/Arrow
 import { ArrowForwardIos as ArrowRight } from "@styled-icons/material-outlined/ArrowForwardIos";
 
 import Slider, { SliderSettings } from "components/Slider";
-import Gamecard, { GamecardProps } from "components/Gamecard";
+import GameCard, { GameCardProps } from "components/GameCard";
 
 import { Wrapper } from "./styles";
 
 export type GamecardSliderProps = {
-    items: GamecardProps[];
+    items: GameCardProps[];
     color?: "white" | "black";
 };
 
@@ -53,7 +53,7 @@ const GamecardSlider = ({ items, color = "black" }: GamecardSliderProps) => (
     <Wrapper color={color}>
         <Slider settings={settings}>
             {items.map((item, index) => (
-                <Gamecard key={index} {...item} />
+                <GameCard key={index} {...item} />
             ))}
         </Slider>
     </Wrapper>

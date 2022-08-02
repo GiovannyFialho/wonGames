@@ -6,7 +6,7 @@ import { QueryWishlist_wishlists_games } from "graphql/generated/QueryWishlist";
 
 import { gamesMapper } from "utils/mappers";
 
-import { GamecardProps } from "components/Gamecard";
+import { GameCardProps } from "components/GameCard";
 import { useMutation } from "@apollo/client";
 import {
     MUTATION_CREATE_WISHLIST,
@@ -14,7 +14,7 @@ import {
 } from "graphql/mutations/wishlist";
 
 export type WishlistContextData = {
-    items: GamecardProps[];
+    items: GameCardProps[];
     isInWishlist: (id: string) => boolean;
     addToWishlist: (id: string) => void;
     removeFromWishlist: (id: string) => void;
